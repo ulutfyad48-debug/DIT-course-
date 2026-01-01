@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Hub - DIT Course & Islamic Library</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+            --success-color: #27ae60;
+        }
+
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #1a2530 100%);
+            color: white;
+            padding: 1.5rem 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: var(--secondary-color);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            padding: 8px 12px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        nav a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--secondary-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(44, 62, 80, 0.85), rgba(44, 62, 80, 0.9)), url('https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 5rem 0;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .hero h2 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            opacity: 0.9;
+        }
+
+        /* Main Content */
+        .content-section {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+            margin-bottom: 3rem;
+        }
+
+        .course-content, .profile-section, .islamic-library {
+            background-color: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 2rem;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.7rem;
+            border-bottom: 3px solid var(--secondary-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title i {
+            color: var(--secondary-color);
+        }
+
+        /* Course Structure */
+        .semester {
+            margin-bottom: 2.5rem;
+        }
+
+        .semester-title {
+            font-size: 1.5rem;
+            color: var(--dark-color);
+            background-color: #f8f9fa;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            border-left: 5px solid var(--secondary-color);
+        }
+
+        .course-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.2rem;
+        }
+
+        .course-item {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 1.2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #eaeaea;
+            text-decoration: none;
+            display: block;
+            color: inherit;
+            cursor: pointer;
+        }
+
+        .course-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            border-color: var(--secondary-color);
+            background-color: #eef7ff;
+        }
+
+        .course-name {
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .course-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--secondary-color);
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 0.9rem;
+            margin-right: 10px;
+            flex-shrink: 0;
+        }
+
+        .course-meta {
+            display: flex;
+            justify-content: space-between;
+            color: #666;
+            font-size: 0.9rem;
+            margin-top: 0.8rem;
+        }
+
+        .modified-date {
+            color: var(--success-color);
+            font-weight: 600;
+        }
+
+        .pdf-icon {
+            color: #e74c3c;
+            margin-left: 8px;
+            font-size: 0.9rem;
+        }
+
+        /* Profile Section */
+        .profile-content {
+            text-align: center;
+        }
+
+        .profile-img-container {
+            position: relative;
+            width: 180px;
+            height: 180px;
+            margin: 0 auto 1.5rem;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 5px solid var(--light-color);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            pointer-events: none;
+            user-select: none;
+        }
+
+        /* Disable right-click and drag on profile image */
+        .profile-img-container {
+            -webkit-user-drag: none;
+            -khtml-user-drag: none;
+            -moz-user-drag: none;
+            -o-user-drag: none;
+            user-drag: none;
+        }
+
+        .profile-img {
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -o-user-select: none;
+            user-select: none;
+        }
+
+        .profile-name {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .profile-title {
+            color: var(--secondary-color);
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .profile-bio {
+            color: #666;
+            line-height: 1.7;
+            text-align: left;
+        }
+
+        /* Islamic Library */
+        .islamic-library {
+            grid-column: 1 / span 2;
+        }
+
+        .library-description {
+            margin-bottom: 1.5rem;
+            color: #555;
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+
+        .library-btn {
+            display: inline-block;
+            background-color: var(--success-color);
+            color: white;
+            padding: 0.9rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(39, 174, 96, 0.3);
+        }
+
+        .library-btn:hover {
+            background-color: #219653;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(39, 174, 96, 0.4);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 2.5rem 0;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .copyright {
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.3rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--secondary-color);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .content-section {
+                grid-template-columns: 1fr;
+            }
+            
+            .islamic-library {
+                grid-column: 1;
+            }
+            
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h2 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .course-list {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <i class="fas fa-laptop-code fa-2x"></i>
+                <h1>YADULLAH <span>DIGITAL HUB</span></h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#courses"><i class="fas fa-book"></i> DIT Courses</a></li>
+                    <li><a href="#profile"><i class="fas fa-user"></i> Profile</a></li>
+                    <li><a href="#islamic-library"><i class="fas fa-mosque"></i> Islamic Library</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h2>Complete DIT Course & Islamic Resources</h2>
+            <p>A comprehensive platform featuring Diploma in Information Technology (DIT) course materials alongside a rich Islamic library with Quran, Hadith, and Islamic teachings.</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container content-section">
+        <!-- DIT Course Content -->
+        <section id="courses" class="course-content">
+            <h2 class="section-title"><i class="fas fa-graduation-cap"></i> DIT Course Full Curriculum</h2>
+            
+            <!-- All Courses in Single List (with numbers 1-14) -->
+            <div class="course-list">
+                <!-- 1. Semester-I - ICT.pdf -->
+                <a href="https://drive.google.com/file/d/14g1awtyskHVz2jugDiB3n_okLtYC4_0Q/view?usp=drivesdk" target="_blank" class="course-item">
+                    <div class="course-name">
+                        <span class="course-number">1</span> Semester-I - ICT.pdf <i class="fas fa-file-pdf pdf-icon"></i>
+                    </div>
+                    <div class="course-meta">
+                        <span class="modified-date">Modified 18 Dec 2025</span>
+                        <span><i class="fas fa-external-link-alt"></i></span>
+                    </div>
+                </a>
+                
+                <!-- 2. Semester-II - Database Systems -->
+                <a href="https://drive.google.com/file/d/1LNSro6nZ7GaJqc2YnJUv2exuOv6ikXkU/view?usp=drivesdk" target="_blank" class="course-item">
+                    <div class="course-name">
+                        <span class="course-number">2</span> Semester-II - Database Systems
+                    </div>
+                    <div class="course-meta">
+                        <span class="modified-date">Modified 18 Dec 2025</span>
+                        <span><i class="fas fa-external-link-alt"></i></span>
+                    </div>
+                </a>
+                
+                <!-- 3. Semester-I - MS Office part 1 -->
+                <a href="https://drive.google.com/file/d/11O3pCCRcPkanLGAG1g0seNXniMnRdN7S/view?usp=drivesdk" target="_blank" class="course-item">
+                    <div class="course-name">
+                        <span class="course-number">3</span> Semester-I - MS Office part 1
+                    </div>
+                    <div class="course-meta">
+                        <span class="modified-date">Modified 18 Dec 2025</span>
+                        <span><i class="fas fa-external-link-alt"></i></span>
+                    </div>
+                </a>
+                
+                <!-- 4. Semester-I - MS Office part 2 -->
+                <a href="https://drive.google.com/file/d/1pqcC_-dhrfxnEydFGPPoURJ3NdmDcavF/view?usp=drivesdk" target="_blank" class="course-item">
+                    <div class="course-name">
+                        <span class="course-number">4</span> Semester-I - MS Office part 2
+                    </div>
+                    <div class="course-meta">
+                        <span class="modified-date">Modified 18 Dec 2025</span>
+                        <span><i class="fas fa-external-link-alt"></i></span>
+                    </div>
+                </a>
+                
+                <!-- 5. Semester-I - MS Office part 3 -->
+                <a href="https://drive.google.com/file/d/1vE8TwYyKSPx9fB8yVqd4Uvqz_ASjAOGN/view?usp=drivesdk" target="_blank" class="course-item">
+                    <div class="course-name">
+                        <span class="course-number">5</span> Semester-I - MS Office part 3
+                    </div>
+                    <div class="course-meta">
+                        <span class="modified-date">Modified 18 Dec 2025</span>
+                        <span><i class="fas fa-external-link-alt"></i></span>
+                    </div>
+                </a>
+                
+                <!-- 6. Semester-I - MS Office part 4 -->
+                <a href="https://drive.google.com/file/d/1PdV8fOVNyvK1D3yDADcdlIoWeS3FcqMD/view?usp=drivesdk" target="_blank" class="course-item">
+                    <div class="course-name">
+                        <span class="course-number">6</span> Semester-I - MS Office part 4
+                    </div>
+                    <div class="course-meta">
+                        <span class="modified-date">Modified 18 Dec 2025</span>
+                        <span><i class="fas fa-external-link-alt"></i></span>
+                    </div>
+                </a>
+                
+                <!-- 7. Semester-II - Video Editing -->
+                <a href="https://drive.google.com/file/d/1jAiYAjDQQd0lJktEN_DVDbiV9UhQ9d9O/view?usp=drivesdk" target="_blank" class="course-item">
+                    <div class="course-name">
+                        <span class="course-number">7</span> Semester-II - Video Editing
+                    </div>
+                    <div class="course-meta">
+                        <span class="modified-date">Modified 18 Dec 2025</span>
+                        <span><i class="fas fa-external-link-alt"></i></span>
+                    </div>
+                </a>
+                
+                <!-- 8. Semester-I - Computer Networking -->
+                <a href="https://drive.google.com/file/d/1-43Omci7mr1GQJIur7xNCPe7GyEIi4EL/view?usp=drivesdk" target="_blank" class="course-item">
+                    <div class="course-name">
+                        <span class="course-number">8</span> Semester-I - Computer Networking
+                    </div>
+                    <div class="course-meta">
+                        <span class="modified-date">Modified 18 Dec 2025</span>
+                        <span><i class="fas fa-external-link-alt"></i></span>
+                    </div>
+                </a>
+                
+                <!-- 9. Semester-II - Web Development -->
+                <a href="https://drive.google.com/file/d/1xjZRXPyas5Yi0RGJLbhXwVqPcrzVesTx/view?usp=drivesdk" target="_blank" class="course-item">
+                    <div class="course-name">
+                        <span class="course-number">9</span> Semester-II - Web Development
+                    </div>
+                    <div class="course-meta">
+                        <span class="modified-date">Modified 18 Dec 2025</span>
+                        <span><i class="fas fa-external-link-alt"></i></span>
+                    </div>
+                </a>
+                
+                <!-- 10. Semester-I - Operating Systems -->
+                <a href="https://drive.google.com/file/d/1q3rLYy2dzYsuCQ9gtffV6tvthUNswFOB/view?usp=drivesdk" target="_blank" class="course-item">
+                    <div class="course-name">
+                        <span class="course-number">10</span> Semester-I - Operating Systems
+                    </div>
+                    <div class="course-meta">
+                        <span class="modified-date">Modified 18 Dec 2025</span>
+                        <span><i class="fas fa-external-link-alt"></i></span>
+                    </div>
+                </a>
+                
+                <!-- 11. Semester-II - Graphic Design -->
+                <a href="https://drive.google.com/file/d/1kpCXS8qJVlRMreD1yc_ThXcANe69Qjqe/view?usp=drivesdk" target="_blank" class="course-item">
+                    <div class="course-name">
+                        <span class="course-number">11</span> Semester-II - Graphic Design
+                    </div>
+                    <div class="course-meta">
+                        <span class="modified-date">Modified 18 Dec 2025</span>
+                        <span><i class="fas fa-external-link-alt"></i></span>
+                    </div>
+                </a>
+                
+                <!-- 12. Semester-II - Graphic Design -->
+                <a href="https://drive.google.com/file/d/18Lk6mQkBzUBFblt1xtsw0mQrDJ-1MPd7/view?usp=drivesdk" target="_blank" class="course-item">
+                    <div class="course-name">
+                        <span class="course-number">12</span> Semester-II - Graphic Design
+                    </div>
+                    <div class="course-meta">
+                        <span class="modified-date">Modified 18 Dec 2025</span>
+                        <span><i class="fas fa-external-link-alt"></i></span>
+                    </div>
+                </a>
+                
+                <!-- 13. Semester-I - Python Programming -->
+                <a href="https://drive.google.com/file/d/1Uxb3gVhpFoFEMXkixWr-5pFZRyX0ufj1/view?usp=drivesdk" target="_blank" class="course-item">
+                    <div class="course-name">
+                        <span class="course-number">13</span> Semester-I - Python Programming
+                    </div>
+                    <div class="course-meta">
+                        <span class="modified-date">Modified 18 Dec 2025</span>
+                        <span><i class="fas fa-external-link-alt"></i></span>
+                    </div>
+                </a>
+                
+                <!-- 14. Semester-II - Project.pdf -->
+                <a href="https://drive.google.com/file/d/17cG5ojzT_hxBxV9_VI2PPQDIvaLMxyfW/view?usp=drivesdk" target="_blank" class="course-item">
+                    <div class="course-name">
+                        <span class="course-number">14</span> Semester-II - Project.pdf <i class="fas fa-file-pdf pdf-icon"></i>
+                    </div>
+                    <div class="course-meta">
+                        <span class="modified-date">Modified 18 Dec 2025</span>
+                        <span><i class="fas fa-external-link-alt"></i></span>
+                    </div>
+                </a>
+            </div>
+        </section>
+        
+        <!-- Profile Section -->
+        <section id="profile" class="profile-section">
+            <h2 class="section-title"><i class="fas fa-user-circle"></i> About Me</h2>
+            <div class="profile-content">
+                <div class="profile-img-container">
+                    <!-- Your protected image - users cannot download it easily -->
+                    <img src="https://drive.google.com/thumbnail?id=1vp8NjmWseejFuDMEgKnBRiVFMOESpiw5&sz=w1000" alt="Yadullah" class="profile-img" id="profileImage">
+                </div>
+                <h2 class="profile-name">Yadullah</h2>
+                <p class="profile-title">Digital Hub Creator & IT Educator</p>
+                <div class="profile-bio">
+                    <p>Welcome to my Digital Hub! I have created this comprehensive platform to provide access to the complete DIT (Diploma in Information Technology) course materials alongside valuable Islamic resources.</p>
+                    <p>My goal is to make quality IT education and Islamic knowledge accessible to everyone. This website is designed to help students and knowledge seekers find all the resources they need in one place.</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Islamic Library Section -->
+        <section id="islamic-library" class="islamic-library">
+            <h2 class="section-title"><i class="fas fa-book-open"></i> Islamic Library</h2>
+            <div class="library-description">
+                <p>Access a comprehensive collection of Islamic resources including the Holy Quran, Hadith, Islamic teachings, and scholarly works. Our Islamic library is designed to provide authentic Islamic knowledge in an easily accessible format for seekers of all levels.</p>
+                <p>The library includes Quranic texts with translations, Hadith collections, Islamic jurisprudence, spirituality resources, and much more - all available in a user-friendly interface.</p>
+            </div>
+            <div style="text-align: center; margin-top: 2rem;">
+                <a href="https://ulutfyad48-debug.github.io/Islamic-library/" target="_blank" class="library-btn">
+                    <i class="fas fa-external-link-alt"></i> Visit Islamic Library
+                </a>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-content">
+            <div class="copyright">
+                <p>&copy; 2025 Yadullah Digital Hub. All Rights Reserved.</p>
+                <p>Designed with <i class="fas fa-heart" style="color:#e74c3c;"></i> for knowledge seekers</p>
+            </div>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Prevent right-click on the profile image
+        document.getElementById('profileImage').addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+            alert('Image downloading is disabled to protect privacy.');
+        });
+        
+        // Prevent drag and drop of the profile image
+        document.getElementById('profileImage').addEventListener('dragstart', function(e) {
+            e.preventDefault();
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                window.scrollTo({
+                    top: targetElement.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
