@@ -5,8 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Digital Hub - DIT Course & Islamic Library</title>
     
- 
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
             margin: 0;
@@ -22,6 +21,7 @@
             --light-color: #ecf0f1;
             --dark-color: #2c3e50;
             --success-color: #27ae60;
+            --english-color: #9b59b6;
         }
 
         body {
@@ -122,7 +122,7 @@
             margin-bottom: 3rem;
         }
 
-        .course-content, .profile-section, .islamic-library {
+        .course-content, .profile-section, .islamic-library, .english-section {
             background-color: white;
             border-radius: 10px;
             padding: 2rem;
@@ -145,21 +145,15 @@
             color: var(--secondary-color);
         }
 
+        .section-title.english-title {
+            border-bottom-color: var(--english-color);
+        }
+
+        .section-title.english-title i {
+            color: var(--english-color);
+        }
+
         /* Course Structure */
-        .semester {
-            margin-bottom: 2.5rem;
-        }
-
-        .semester-title {
-            font-size: 1.5rem;
-            color: var(--dark-color);
-            background-color: #f8f9fa;
-            padding: 1rem;
-            border-radius: 8px;
-            margin-bottom: 1.5rem;
-            border-left: 5px solid var(--secondary-color);
-        }
-
         .course-list {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -185,6 +179,11 @@
             background-color: #eef7ff;
         }
 
+        .english-item:hover {
+            border-color: var(--english-color);
+            background-color: #f3e5f5;
+        }
+
         .course-name {
             font-weight: 600;
             color: var(--primary-color);
@@ -207,6 +206,10 @@
             font-size: 0.9rem;
             margin-right: 10px;
             flex-shrink: 0;
+        }
+
+        .english-number {
+            background-color: var(--english-color);
         }
 
         .course-meta {
@@ -252,7 +255,6 @@
             user-select: none;
         }
 
-        /* Disable right-click and drag on profile image */
         .profile-img-container {
             -webkit-user-drag: none;
             -khtml-user-drag: none;
@@ -285,12 +287,29 @@
 
         .profile-bio {
             color: #666;
-            line-height: 1.7;
+            line-height: 1.8;
             text-align: left;
         }
 
-        /* Islamic Library */
-        .islamic-library {
+        .profile-bio p {
+            margin-bottom: 1rem;
+        }
+
+        .highlight-box {
+            background-color: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 1rem;
+            margin: 1.5rem 0;
+            border-radius: 5px;
+        }
+
+        .highlight-box.success {
+            background-color: #d4edda;
+            border-left-color: var(--success-color);
+        }
+
+        /* Islamic Library & English Section */
+        .islamic-library, .english-section {
             grid-column: 1 / span 2;
         }
 
@@ -360,7 +379,7 @@
                 grid-template-columns: 1fr;
             }
             
-            .islamic-library {
+            .islamic-library, .english-section {
                 grid-column: 1;
             }
             
@@ -407,7 +426,8 @@
             <nav>
                 <ul>
                     <li><a href="#courses"><i class="fas fa-book"></i> DIT Courses</a></li>
-                    <li><a href="#profile"><i class="fas fa-user"></i> Profile</a></li>
+                    <li><a href="#english"><i class="fas fa-language"></i> English Learning</a></li>
+                    <li><a href="#about"><i class="fas fa-info-circle"></i> About</a></li>
                     <li><a href="#islamic-library"><i class="fas fa-mosque"></i> Islamic Library</a></li>
                 </ul>
             </nav>
@@ -418,7 +438,7 @@
     <section class="hero">
         <div class="container">
             <h2>Complete DIT Course & Islamic Resources</h2>
-            <p>A comprehensive platform featuring Diploma in Information Technology (DIT) course materials alongside a rich Islamic library with Quran, Hadith, and Islamic teachings.</p>
+            <p>Free access to complete Diploma in Information Technology (DIT) course materials, English language learning resources, and comprehensive Islamic library with Quran, Hadith, and Islamic teachings.</p>
         </div>
     </section>
 
@@ -428,7 +448,7 @@
         <section id="courses" class="course-content">
             <h2 class="section-title"><i class="fas fa-graduation-cap"></i> DIT Course Full Curriculum</h2>
             
-            <!-- All Courses in Single List (with numbers 1-14) -->
+            <!-- All DIT Courses (1-14) -->
             <div class="course-list">
                 <!-- 1. Semester-I - ICT.pdf -->
                 <a href="https://drive.google.com/file/d/14g1awtyskHVz2jugDiB3n_okLtYC4_0Q/view?usp=drivesdk" target="_blank" class="course-item">
@@ -586,33 +606,83 @@
             </div>
         </section>
         
-        <!-- Profile Section -->
-        <section id="profile" class="profile-section">
-            <h2 class="section-title"><i class="fas fa-user-circle"></i> About Me</h2>
+        <!-- About/Purpose Section -->
+        <section id="about" class="profile-section">
+            <h2 class="section-title"><i class="fas fa-heart"></i> About This Platform</h2>
             <div class="profile-content">
                 <div class="profile-img-container">
-                    <!-- Your protected image - users cannot download it easily -->
-                    <img src="https://drive.google.com/thumbnail?id=1vp8NjmWseejFuDMEgKnBRiVFMOESpiw5&sz=w1000" alt="Yadullah" class="profile-img" id="profileImage">
+                    <img src="https://drive.google.com/thumbnail?id=1M0-ksmiMeRAK7bKgAssr7GSssP9xMNlq&sz=w1000" alt="Digital Hub" class="profile-img" id="profileImage">
                 </div>
-                <h2 class="profile-name">Yadullah</h2>
-                <p class="profile-title">Digital Hub Creator & IT Educator</p>
+                <h2 class="profile-name">خیر کے کام کے لیے</h2>
+                <p class="profile-title">For the Benefit of Knowledge Seekers</p>
                 <div class="profile-bio">
-                    <p>Welcome to my Digital Hub! I have created this comprehensive platform to provide access to the complete DIT (Diploma in Information Technology) course materials alongside valuable Islamic resources.</p>
-                    <p>My goal is to make quality IT education and Islamic knowledge accessible to everyone. This website is designed to help students and knowledge seekers find all the resources they need in one place.</p>
+                    <p><strong>📚 Complete DIT Course Notes:</strong> یہاں آپ کو DIT (Diploma in Information Technology) کے مکمل نوٹس حاصل ہو جاتے ہیں۔ تمام سیمسٹرز کے مکمل کورس میٹریل بالکل مفت دستیاب ہیں۔</p>
+                    
+                    <div class="highlight-box">
+                        <p><strong><i class="fas fa-book-reader"></i> اسلامک لائبریری میں کیا ہے؟</strong></p>
+                        <p>📖 قرآن مجید کی تلاوت اور ترجمہ<br>
+                        📚 احادیث مبارکہ کی کتابیں<br>
+                        👶 بچوں کی اسلامی کہانیاں<br>
+                        🕌 اسلامی تعلیمات اور دعائیں<br>
+                        📝 اسلامی علم کی مختلف کتب</p>
+                    </div>
+
+                    <div class="highlight-box success">
+                        <p><strong><i class="fas fa-share-alt"></i> ثواب حاصل کریں!</strong></p>
+                        <p>اگر یہ ویب سائٹ آپ کے لیے فائدہ مند ہے تو برائے کرم اسے شیئر ضرور کریں۔ علم کو آگے پہنچانا صدقہ جاریہ ہے۔ جتنے زیادہ لوگ اس سے فائدہ اٹھائیں گے، آپ کے لیے اتنا ہی زیادہ ثواب ہوگا۔</p>
+                        <p><em>"خیر کا کام کرنے والے اور اس میں مدد کرنے والے دونوں برابر کے ثواب میں شریک ہیں۔"</em></p>
+                    </div>
+
+                    <p style="text-align: center; margin-top: 1.5rem; font-size: 1.1rem; color: var(--success-color); font-weight: 600;">
+                        <i class="fas fa-hands-helping"></i> یہ پلیٹ فارم لوگوں کے فائدے کے لیے بنایا گیا ہے
+                    </p>
                 </div>
             </div>
         </section>
-        
+    </div>
+
+    <!-- English Language Section -->
+    <div class="container">
+        <section id="english" class="english-section">
+            <h2 class="section-title english-title"><i class="fas fa-language"></i> English Language Learning</h2>
+            <div class="library-description">
+                <p><strong>Learn English in 100 Days!</strong> This comprehensive guide will help you master the English language step by step. Perfect for beginners and intermediate learners who want to improve their English communication skills.</p>
+                <p>انگریزی زبان سیکھنا اب آسان ہو گیا! یہ کتاب 100 دنوں میں انگریزی سکھانے کے لیے خاص طور پر تیار کی گئی ہے۔</p>
+            </div>
+            <div class="course-list">
+                <a href="https://drive.google.com/file/d/1BxYt-SMxr0uUmdbqwXOnFBxZzLs93lae/view?usp=drivesdk" target="_blank" class="course-item english-item">
+                    <div class="course-name">
+                        <span class="course-number english-number">1</span> Learn English Language In 100 Days.pdf <i class="fas fa-file-pdf pdf-icon"></i>
+                    </div>
+                    <div class="course-meta">
+                        <span class="modified-date">Modified 02 Jan 2026</span>
+                        <span><i class="fas fa-external-link-alt"></i></span>
+                    </div>
+                </a>
+            </div>
+        </section>
+
         <!-- Islamic Library Section -->
         <section id="islamic-library" class="islamic-library">
-            <h2 class="section-title"><i class="fas fa-book-open"></i> Islamic Library</h2>
+            <h2 class="section-title"><i class="fas fa-book-open"></i> Islamic Library - اسلامی لائبریری</h2>
             <div class="library-description">
-                <p>Access a comprehensive collection of Islamic resources including the Holy Quran, Hadith, Islamic teachings, and scholarly works. Our Islamic library is designed to provide authentic Islamic knowledge in an easily accessible format for seekers of all levels.</p>
-                <p>The library includes Quranic texts with translations, Hadith collections, Islamic jurisprudence, spirituality resources, and much more - all available in a user-friendly interface.</p>
+                <p><strong>🕌 مکمل اسلامی لائبریری تک رسائی حاصل کریں</strong></p>
+                <p>یہاں آپ کو مل جائے گا:</p>
+                <ul style="list-style: none; padding-left: 0; margin-top: 1rem;">
+                    <li><i class="fas fa-check-circle" style="color: var(--success-color);"></i> <strong>قرآن مجید</strong> - مکمل تلاوت اور تراجم</li>
+                    <li><i class="fas fa-check-circle" style="color: var(--success-color);"></i> <strong>احادیث مبارکہ</strong> - صحیح بخاری، مسلم اور دیگر کتب</li>
+                    <li><i class="fas fa-check-circle" style="color: var(--success-color);"></i> <strong>بچوں کی کہانیاں</strong> - اسلامی اخلاقی کہانیاں</li>
+                    <li><i class="fas fa-check-circle" style="color: var(--success-color);"></i> <strong>اسلامی تعلیمات</strong> - نماز، روزہ، حج، زکوٰۃ</li>
+                    <li><i class="fas fa-check-circle" style="color: var(--success-color);"></i> <strong>دعائیں اور اذکار</strong> - روزمرہ کی دعائیں</li>
+                    <li><i class="fas fa-check-circle" style="color: var(--success-color);"></i> <strong>اسلامی کتب</strong> - مختلف موضوعات پر علمی کتابیں</li>
+                </ul>
+                <p style="margin-top: 1.5rem; padding: 1rem; background-color: #e8f5e9; border-radius: 8px; border-left: 4px solid var(--success-color);">
+                    <i class="fas fa-info-circle"></i> <strong>نوٹ:</strong> یہ تمام مواد بالکل مفت ہے اور سب کے لیے دستیاب ہے۔ اس علم کو زیادہ سے زیادہ لوگوں تک پہنچائیں اور صدقہ جاریہ میں شریک بنیں۔
+                </p>
             </div>
             <div style="text-align: center; margin-top: 2rem;">
                 <a href="https://ulutfyad48-debug.github.io/Islamic-library/" target="_blank" class="library-btn">
-                    <i class="fas fa-external-link-alt"></i> Visit Islamic Library
+                    <i class="fas fa-external-link-alt"></i> Visit Islamic Library - لائبریری دیکھیں
                 </a>
             </div>
         </section>
@@ -624,12 +694,13 @@
             <div class="copyright">
                 <p>&copy; 2025 Yadullah Digital Hub. All Rights Reserved.</p>
                 <p>Designed with <i class="fas fa-heart" style="color:#e74c3c;"></i> for knowledge seekers</p>
+                <p style="margin-top: 0.5rem; font-size: 0.9rem;">علم نافع صدقہ جاریہ ہے - Share and earn rewards</p>
             </div>
             <div class="social-links">
-                <a href="#"><i class="fab fa-facebook"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-linkedin"></i></a>
-                <a href="#"><i class="fab fa-youtube"></i></a>
+                <a href="#" title="Facebook"><i class="fab fa-facebook"></i></a>
+                <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
             </div>
         </div>
     </footer>
@@ -653,10 +724,12 @@
                 const targetId = this.getAttribute('href');
                 const targetElement = document.querySelector(targetId);
                 
-                window.scrollTo({
-                    top: targetElement.offsetTop - 80,
-                    behavior: 'smooth'
-                });
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
             });
         });
     </script>
